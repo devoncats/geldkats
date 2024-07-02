@@ -1,0 +1,18 @@
+---
+const path = Astro.url.pathname.split('/').filter(Boolean)
+---
+
+<nav class="text-sm">
+    <a href='/'>geldkats</a>
+    <span class='cursor-default'>/</span>
+    {
+        path.map((path) => {
+            return (
+                <>
+                    <a href={`/${path}`}>{path}</a>
+                    <span class='cursor-default last:hidden'>/ </span>
+                </>
+            )
+        })
+    }
+</nav>

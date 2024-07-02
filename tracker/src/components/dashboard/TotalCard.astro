@@ -1,0 +1,13 @@
+---
+interface Props {
+    title: string
+    total: number
+}
+
+const { title, total } = Astro.props
+---
+
+<div class='border px-8 py-4 rounded-lg flex-1'>
+    <h3 class='font-semibold'>{title}</h3>
+    <span>$ {total}</span>
+</div>

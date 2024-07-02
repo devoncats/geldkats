@@ -1,0 +1,57 @@
+---
+import Layout from '@/layouts/Layout.astro'
+
+import ChartLine from '@/components/dashboard/ChartLine'
+import ChartBar from '@/components/dashboard/ChartBar'
+import TotalCard from '@/components/dashboard/TotalCard.astro'
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import TransactionCard from '@/components/dashboard/TransactionCard.astro'
+
+import {
+    transactions,
+    transactionsByMonth,
+    totalBalance,
+    totalExpenses,
+    totalIncomes,
+} from '@/utils/transactions.ts'
+---
+
+<Layout title='Geldkats | Manage your finances'>
+    <section class='flex flex-col gap-4'>
+        <Breadcrumbs />
+        <div class='max-h-[40dvh] min-h-[40dvh] border rounded-lg px-4 py-2'>
+            <h2 class="text-lg font-semibold">Transactions over time</h2>
+            <ChartLine
+                transactions={transactionsByMonth}
+                client:only='react'
+            />
+        </div>
+
+        <section class='flex items-center justify-between gap-4 text-sm'>
+            <TotalCard title="Total Balance" total={totalBalance} />
+            <TotalCard title="Total Expenses" total={totalExpenses} />
+            <TotalCard title="Total Incomes" total={totalIncomes} />
+        </section>
+
+        <section class='border h-full'>            
+            <ChartBar
+                income={totalIncomes}
+                expenses={totalExpenses}
+                client:only='react'
+            />
+        </section>
+    </section>
+
+    <section class='flex flex-col gap-4 mt-9 overflow-hidden border py-2 px-4 rounded-lg'>
+        <h3 class='text-lg font-semibold'>Recent transactions</h3>
+        <ul
+            class='flex flex-col gap-2 overflow-y-auto h-full scrollbar'
+        >
+            {
+                transactions.map((transaction) => (
+                    <TransactionCard {...transaction} />
+                ))
+            }
+        </ul>
+    </section>
+</Layout>

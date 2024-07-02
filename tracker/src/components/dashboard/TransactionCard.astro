@@ -1,0 +1,32 @@
+---
+import GraphUp from '@/icons/graph-up.astro'
+import GraphDown from '@/icons/graph-down.astro'
+
+interface Props {
+    description: string
+    amount: number
+    type: string
+}
+
+const { description, amount, type } = Astro.props
+---
+
+{
+    type === 'EXPENSE' ? (
+        <li class='flex justify-between items-center h-fit p-2 border rounded-lg text-sm bg-red-400'>
+            <div class='flex items-center gap-2'>
+                <GraphDown />
+                <span class="font-medium">{description}</span>
+            </div>
+            <span>$ {amount.toFixed(2)}</span>
+        </li>
+    ) : (
+        <li class='flex justify-between items-center h-fit p-2 border rounded-lg text-sm bg-green-400'>
+            <div class='flex items-center gap-2'>
+                <GraphUp />
+                <span class="font-medium">{description}</span>
+            </div>
+            <span>$ {amount.toFixed(2)}</span>
+        </li>
+    )
+}

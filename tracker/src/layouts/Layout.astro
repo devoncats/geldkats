@@ -1,0 +1,86 @@
+---
+import '@fontsource-variable/inter'
+import PiggyBank from '@/icons/piggy-bank.astro'
+
+interface Props {
+    title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta
+            name='description'
+            content='Astro description'
+        />
+        <meta
+            name='viewport'
+            content='width=device-width'
+        />
+        <link
+            rel='icon'
+            type='image/svg+xml'
+            href='/favicon.svg'
+        />
+        <meta
+            name='generator'
+            content={Astro.generator}
+        />
+        <title>{title}</title>
+    </head>
+    <body>
+        <main
+            class='h-screen w-screen flex items-center justify-center gap-2 bg-gray-50 p-8'
+        >
+            <section
+                class='h-full w-1/5 px-4 py-8 border rounded-lg bg-white flex flex-col gap-8'
+            >
+                <a
+                    href='/'
+                    class='flex items-center gap-2 text-3xl font-medium'
+                >
+                    <PiggyBank />
+                    geldkats
+                </a>
+                <nav>
+                    <ul class='grid gap-4'>
+                        <a
+                            href='/dashboard'
+                            class='p-2 rounded-lg hover:bg-gray-100 hover:cursor-pointer'
+                        >
+                            Dashboard
+                        </a>
+                        <a
+                            href='/dashboard/transactions'
+                            class='p-2 rounded-lg hover:bg-gray-100 hover:cursor-pointer'
+                        >
+                            Transactions
+                        </a>
+                        <a
+                            href='/dashboard/expenses'
+                            class='p-2 rounded-lg hover:bg-gray-100 hover:cursor-pointer'
+                        >
+                            Expenses
+                        </a>
+                        <a
+                            href='/dashboard/incomes'
+                            class='p-2 rounded-lg hover:bg-gray-100 hover:cursor-pointer'
+                        >
+                            Incomes
+                        </a>
+                    </ul>
+                </nav>
+            </section>
+
+            <article
+                class='h-full w-full px-16 py-8 rounded-lg border grid grid-cols-[2fr,_1fr] gap-16 bg-white'
+            >
+                <slot />
+            </article>
+        </main>
+    </body>
+</html>

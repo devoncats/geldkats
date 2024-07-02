@@ -1,0 +1,11 @@
+services:
+  postgres:
+    container_name: tracker_database
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: devoncats
+      POSTGRES_PASSWORD: changemeinprod!
+      POSTGRES_DB: tracker
+    restart: always
